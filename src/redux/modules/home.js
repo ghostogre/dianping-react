@@ -1,5 +1,5 @@
 // import { get } from '../../utils/request';
-import { url  } from '../../utils/url';
+import url from '../../utils/url';
 import { FETCH_DATA } from '../middlewares/api';
 import { schema } from '../modules/entities/products'
 export const types = {
@@ -44,20 +44,19 @@ export const actions = {
   }
 }
 
-// 不会在home.js里面被调用（actions.获取）
-const fetchLikesRequest = () => ({
-  type: types.FETCH_LIKES_REQUEST
-});
+// const fetchLikesRequest = () => ({
+//   type: types.FETCH_LIKES_REQUEST
+// });
 
-const fetchLikesSuccess = (data) => ({
-  type: types.FETCH_LIKES_SUCCESS,
-  data
-});
+// const fetchLikesSuccess = (data) => ({
+//   type: types.FETCH_LIKES_SUCCESS,
+//   data
+// });
 
-const fetchLikesFailure = (error) => ({
-  type: types.FETCH_LIKES_FAILURE,
-  error
-})
+// const fetchLikesFailure = (error) => ({
+//   type: types.FETCH_LIKES_FAILURE,
+//   error
+// })
 
 const reducer = (state = {}, action) => {
   switch (action.type) {

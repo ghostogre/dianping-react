@@ -1,0 +1,38 @@
+.category {
+  text-align: center;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+  padding: 0 0 30px;
+  /* 省略的“左”值等于“右”, 省略的“下”值等于“上” */
+  color: #333333;
+  background-color: #ffffff;
+}
+
+.category__section {
+  width: 20%;
+  padding: 13px 0 0;
+  float: left;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* 因为 .slick img { display: block; } */
+.category__icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 2px;
+}
+
+.category__text {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+
+.slick-dots li {
+  margin: 0;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #f5734b;
+}
