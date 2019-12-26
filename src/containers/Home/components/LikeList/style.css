@@ -1,0 +1,23 @@
+.likeList {
+  background-color: #ffffff;
+}
+
+.likeList__header {
+  height: 30px;
+  line-height: 40px;
+  padding-left: 15px;
+  font-size: 14px;
+  color: #777;
+}
+
+.likeList__viewAll {
+  display: block;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 15px;
+}
+
+
