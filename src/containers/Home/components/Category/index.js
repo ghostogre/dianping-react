@@ -137,7 +137,7 @@ class Category extends Component {
   render() {
     const settings = {
       dots: true,
-      arrow: false,
+      arrows: false,
       slidesToShow: 1,
       swipeToSlide: true,
       autoplay: true
@@ -153,7 +153,7 @@ class Category extends Component {
                     section.map((item, i) => {
                       return (
                         <div key={i} className="category__section">
-                          <img className="category__icon" src={item.src} />
+                          <img alt="" className="category__icon" src={item.src} />
                           <div>
                             <span className="category__text">{item.name}</span>
                           </div>
