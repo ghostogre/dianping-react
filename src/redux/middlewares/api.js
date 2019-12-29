@@ -9,7 +9,7 @@ export default store => next => action => {
   }
 
   const { endpoint, schema, types } = callAPI;
-  if (typeof endpoint === 'string') {
+  if (typeof endpoint !== 'string') {
     throw new Error('endpoint必须为字符串类型的URL');
   }
 
@@ -21,7 +21,7 @@ export default store => next => action => {
     throw new Error('需要指定一个包含了3个action type的数组');
   }
 
-  if (types.every(type => typeof type === 'string')) {
+  if (!types.every(type => typeof type === 'string')) {
     throw new Error('action type类型必须为字符串');
   }
 

@@ -8,7 +8,7 @@ function get(url) {
     method: 'get',
     headers
   }).then((response) => {
-    handleResponse(response);
+    return handleResponse(url, response);
   }).catch(err => {
     console.error(`Request Failed. Url = ${url}. Message=${err}`);
     return Promise.reject({ error: { message: 'Request failed' } });
@@ -21,7 +21,7 @@ function post(url, data) {
     headers,
     body: data
   }).then((response) => {
-    handleResponse(response);
+    return handleResponse(url, response);
   }).catch(err => {
     console.error(`Request Failed. Url = ${url}. Message=${err}`);
     return Promise.reject({ error: { message: 'Request failed' } });
