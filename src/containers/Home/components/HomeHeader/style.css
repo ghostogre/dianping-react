@@ -54,6 +54,7 @@
   color: #b8b8b8;
   text-align: left;
   font-size: 13px;
+  /* 地址选择或者登陆的时候长度变化，left 属性规定元素的左边缘 */
   transition: left .2s, right .2s;
   position: relative;
   border-radius: 25px;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LikeItem from "../LikeItem"
+import { Link } from 'react-router-dom';
 import Loading from "../../../../components/Loading"
 import "./style.css"
 
@@ -26,9 +27,9 @@ class LikeList extends Component {
           pageCount < 3 ? (
             <Loading/>
           ): (
-            <a className="likeList__viewAll">
+            <Link to="" className="likeList__viewAll">
               查看更多
-            </a>
+            </Link>
           )
         }
       </div>
@@ -36,8 +37,14 @@ class LikeList extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener("scroll", this.handleScroll);
-    this.props.fetchData()
+    if (this.props.pageCount < 3) { // 数据保存在了redux，重新渲染的时候要判断一下
+      document.addEventListener("scroll", this.handleScroll);
+    } else {
+      this.removeListener = true
+    }
+    if (this.props.pageCount === 0) { // 还没有加载过数据，需要请求页面
+      this.props.fetchData()
+    }
   }
 
   componentDidUpdate() {
