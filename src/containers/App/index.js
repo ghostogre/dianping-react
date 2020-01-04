@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import  { getError, actions as appActions } from '../../redux/modules/app';
 import Home from '../Home';
 import ProductDetail from '../ProductDetail';
+import Search from '../Search'
 import './style.css';
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
         <Router>
           <Switch>
             <Route path="/detail/:id" component={ProductDetail}></Route>
+            <Route path="/search" component={Search}></Route>
             <Route path="/" component={Home}></Route>
           </Switch>
         </Router>

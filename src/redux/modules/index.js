@@ -3,13 +3,15 @@ import entities from './entities';
 import app from './app';
 import detail from './detail';
 import home from './home';
+import search from './search'
 
 // 合并
 const rootReducer = combineReducers({
   app,
   detail,
   home,
-  entities
+  entities,
+  search
 });
 
 export default rootReducer;
