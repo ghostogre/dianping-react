@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './style.css';
-import Banner from './components/Banner';
+import Banner from '../../components/Banner';
 import Category from './components/Category';
 import Headline from './components/Headline';
 import Activity from './components/Activity';

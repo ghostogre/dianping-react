@@ -17,7 +17,7 @@ class Remark extends Component {
           </dl>
           {purchaseNotes.map((item, index) => {
             return (
-              <dl className="remark__item">
+              <dl className="remark__item" key={index}>
                 <dt className="remark__itemTitle">{item.title}</dt>
                 <dd className="remark__itemDesc">{item.content}</dd>
               </dl>

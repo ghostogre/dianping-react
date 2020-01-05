@@ -7,7 +7,9 @@ import  { getError, actions as appActions } from '../../redux/modules/app';
 import Home from '../Home';
 import ProductDetail from '../ProductDetail';
 import Search from '../Search'
-import './style.css';
+import SearchResult from '../SearchResult'
+import Login from '../Login'
+import './style.css'
 
 class App extends Component {
   render () {
@@ -19,8 +21,10 @@ class App extends Component {
       <div className="App">
         <Router>
           <Switch>
+            <Route path="/login" component={Login}></Route>
             <Route path="/detail/:id" component={ProductDetail}></Route>
             <Route path="/search" component={Search}></Route>
+            <Route path="/search_result" component={SearchResult}></Route>
             <Route path="/" component={Home}></Route>
           </Switch>
         </Router>
