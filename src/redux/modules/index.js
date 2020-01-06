@@ -4,6 +4,8 @@ import app from './app';
 import detail from './detail';
 import home from './home';
 import search from './search'
+import login from './login'
+import user from './user'
 
 // 合并
 const rootReducer = combineReducers({
@@ -11,7 +13,9 @@ const rootReducer = combineReducers({
   detail,
   home,
   entities,
-  search
+  search,
+  login,
+  user
 });
 
 export default rootReducer;
