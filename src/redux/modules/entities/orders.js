@@ -9,8 +9,12 @@ export const types = {
   // 删除订单
   DELETE_ORDER: 'ORDERS/DELETE_ORDER',
   // 新增评价
-  ADD_COMMENT: 'ORDERS/ADD_COMMENT'
+  ADD_COMMENT: 'ORDERS/ADD_COMMENT',
+  // 新增订单
+  ADD_ORDER: 'ORDERS/ADD_ORDER'
 }
+
+let orderIdCounter = 10
 
 export const actions = {
   // 删除订单
@@ -23,7 +27,19 @@ export const actions = {
     type: types.ADD_COMMENT,
     orderId,
     commentId
-  })
+  }),
+  // 新增订单
+  addOrder: order => {
+    const orderId = `o-${++orderIdCounter}`
+    return {
+      type: types.ADD_ORDER,
+      orderId,
+      order: {
+        ...order,
+        id: orderId
+      }
+    }
+  }
 }
 
 // 类型常量
@@ -46,6 +62,11 @@ const reducer = (state = {}, action) => {
   } else if (action.type === types.DELETE_ORDER) {
     const { [action.orderId]: deleteOrder, ...restOrders } =  state
     return restOrders
+  } else if (action.type === types.ADD_ORDER) {
+    return {
+      ...state,
+      [action.orderId]: action.order
+    }
   } else { // 其他action
     return normalReducer(state, action)
   }

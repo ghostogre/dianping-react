@@ -1,16 +1,23 @@
 import url from "../../utils/url"
 import { FETCH_DATA } from "../middlewares/api"
-import { schema, TO_PAY_TYPE, REFUND_TYPE, AVAILABLE_TYPE, getOrdersById,
+import { schema, TO_PAY_TYPE, USED_TYPE, REFUND_TYPE, AVAILABLE_TYPE, getOrdersById,
   actions as orderActions, types as orderTypes } from './entities/orders'
 import {
   actions as commentActions
 } from './entities/comments'
 import { combineReducers } from "redux"
 
+const typeToKey = {
+  [TO_PAY_TYPE]: 'toPayIds',
+  [AVAILABLE_TYPE]: 'availableIds',
+  [REFUND_TYPE]: 'refundIds'
+}
+
 const initialState = {
   orders: {
     isFetching: false,
     ids: [],
+    fetched: false, // 购买页面中使用，防止当在下单页面刷新后，打开个人中心不加载
     toPayIds: [], // 待付款的订单ID
     availableIds: [], // 可使用的订单ID
     refundIds: [] // 退款
@@ -57,8 +64,12 @@ export const types = {
 export const actions = {
   loadOrders: () => {
     return (dispatch, getState) => {
-      const { ids } = getState().user.orders
-      if (ids.length > 0) {
+      const { ids, fetched } = getState().user.orders
+      // 下单页面刷新后，会出现不加载
+      // if (ids.length > 0) {
+      //   return null
+      // }
+      if(fetched) {
         return null
       }
       const endpoint = url.getOrders()
@@ -183,6 +194,7 @@ const orders = (state = initialState.orders, action) => {
       return {
         ...state,
         isFetching: false,
+        fetched: true,
         toPayIds: state.toPayIds.concat(toPayIds),
         availableIds: state.availableIds.concat(availableIds),
         refundIds: state.refundIds.concat(refundIds),
@@ -202,6 +214,17 @@ const orders = (state = initialState.orders, action) => {
         toPayIds: removeOrderId(state, 'toPayIds', action.orderId),
         availableIds: removeOrderId(state, 'availableIds', action.orderId),
         refundIds: removeOrderId(state, 'refundIds', action.orderId),
+      }
+    case orderTypes.ADD_ORDER:
+      const { order } = action
+      const key = typeToKey[order.type]
+      return key ? {
+        ...state,
+        ids: [order.id].concat(state.ids),
+        [key]: [order.id].concat(state[key])
+      } : {
+        ...state,
+        ids: [order.id].concat(state.ids)
       }
     default:
       return state

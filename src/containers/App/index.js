@@ -12,6 +12,7 @@ import Login from '../Login'
 import PrivateRoute from '../PrivateRoute'
 import './style.css'
 import User from '../User'
+import Purchase from '../Purchase'
 
 class App extends Component {
   render () {
@@ -28,6 +29,7 @@ class App extends Component {
             <Route path="/search" component={Search}></Route>
             <Route path="/search_result" component={SearchResult}></Route>
             <PrivateRoute path="/user" component={User}></PrivateRoute>
+            <PrivateRoute path="/purchase/:id" component={Purchase}></PrivateRoute>
             <Route path="/" component={Home}></Route>
           </Switch>
         </Router>
