@@ -12,3 +12,6 @@ export default reducer;
 export const getKeywordsById = (state, id) => {
   return state.entities.keywords[id]
 }
+
+export const getAllKeywords = state =>
+  state.entities.keywords

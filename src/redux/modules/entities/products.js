@@ -21,3 +21,6 @@ export const getProductDetail = (state, id) => {
 export const getProductById = (state, id) => {
   return state.entities.products[id]
 }
+
+export const getAllProduct = state =>
+  state.entities.products

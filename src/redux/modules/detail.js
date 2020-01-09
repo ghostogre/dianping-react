@@ -1,8 +1,10 @@
 import url from '../../utils/url'
 import { FETCH_DATA } from '../middlewares/api'
-import { schema as productSchema, getProductDetail, getProductById } from './entities/products'
-import { schema as shopSchema, getShopById } from './entities/shops'
+import { schema as productSchema, getProductDetail, getProductById, getAllProduct } from './entities/products'
+import { schema as shopSchema, getShopById, getAllShop } from './entities/shops'
 import { combineReducers } from 'redux'
+import createReducer from '../../utils/createReducer';
+import { createSelector } from 'reselect';
 const intitalState = {
   product: {
     isFetching: false,

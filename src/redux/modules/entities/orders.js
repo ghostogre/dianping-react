@@ -78,3 +78,5 @@ export default reducer
 export const getOrdersById = (state, id) => {
   return state.entities.orders[id]
 }
+
+export const getAllOrders = state => state.entities.orders

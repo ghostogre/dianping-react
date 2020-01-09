@@ -2,17 +2,25 @@ import React, { Component } from 'react';
 import ErrorToast from '../../components/ErrorToast';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import  { getError, actions as appActions } from '../../redux/modules/app';
-import Home from '../Home';
-import ProductDetail from '../ProductDetail';
-import Search from '../Search'
-import SearchResult from '../SearchResult'
-import Login from '../Login'
-import PrivateRoute from '../PrivateRoute'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import  { getError, actions as appActions } from '../../redux/modules/app'
+import AsyncComponent from '../../utils/AsyncCompent'
 import './style.css'
-import User from '../User'
-import Purchase from '../Purchase'
+// import Home from '../Home';
+// import ProductDetail from '../ProductDetail';
+// import Search from '../Search'
+// import SearchResult from '../SearchResult'
+// import Login from '../Login'
+// import User from '../User'
+// import Purchase from '../Purchase'
+import PrivateRoute from '../PrivateRoute'
+const Home = AsyncComponent(() => import('../Home'))
+const ProductDetail = AsyncComponent(() => import('../ProductDetail'))
+const Search = AsyncComponent(() => import('../Search'))
+const SearchResult = AsyncComponent(() => import('../SearchResult'))
+const Login = AsyncComponent(() => import('../Login'))
+const User = AsyncComponent(() => import('../User'))
+const Purchase = AsyncComponent(() => import('../Purchase'))
 
 class App extends Component {
   render () {

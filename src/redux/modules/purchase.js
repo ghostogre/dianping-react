@@ -1,5 +1,6 @@
 import { getProductDetail } from './entities/products'
 import { AVAILABLE_TYPE, actions as orderActions } from './entities/orders'
+import { createSelector } from 'reselect'
 
 const initialState = {
   quantity: 1,
@@ -94,3 +95,14 @@ export const getTipStatus = state =>
 // entities下虽然已经有了，不希望视图层关注到领域内部的状态模块
 export const getProduct = (state, id) =>
   getProductDetail(state, id)
+
+// 获取总价
+export const getTotalPrice = createSelector(
+  [getProduct, getQuantity], (product, quantity) => {
+    if (!product) {
+      return 0
+    } else {
+      return (product.currentPrice * quantity).toFixed(1)
+    }
+  }
+)

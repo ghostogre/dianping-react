@@ -13,3 +13,6 @@ export const getShopById = (state, id) => {
   const shop = state.entities.shops[id]
   return shop
 }
+
+export const getAllShop = (state) => 
+  state.entities.shops

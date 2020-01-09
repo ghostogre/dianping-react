@@ -3,8 +3,9 @@ import './style.css'
 
 class PurchaseForm extends Component {
   render() {
-    const { quantity, product: { currentPrice }, phone } = this.props
-    const totalPrice = (currentPrice * quantity).toFixed(1)
+    const { quantity, totalPrice, phone } = this.props
+    // const { product } = this.props
+    // const totalPrice = (currentPrice * quantity).toFixed(1)
     return (
       <div className="purchaseForm">
         <div className="purchaseForm__wrapper">
@@ -53,14 +54,14 @@ class PurchaseForm extends Component {
   handleDecrease = () => {
     const { quantity } = this.props
     if (quantity > 0) {
-      this.props.onSetQuantity(quantity - 1)
+      this.props.onSetQuantity(Number(quantity) - 1)
     }
   }
 
   // 数量增加
   handleIncrease = () => {
     const { quantity } = this.props
-    this.props.onSetQuantity(quantity + 1)
+    this.props.onSetQuantity(Number(quantity) + 1)
   }
 
   // 提交订单
@@ -70,7 +71,7 @@ class PurchaseForm extends Component {
 
   // input change 数量
   handleChange = (e) => {
-    this.props.onSetQuantity(e.target.value * 1)
+    this.props.onSetQuantity(Number(e.target.value))
   }
 }
 

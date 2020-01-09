@@ -1,11 +1,12 @@
 import url from "../../utils/url"
 import { FETCH_DATA } from "../middlewares/api"
 import { schema, TO_PAY_TYPE, USED_TYPE, REFUND_TYPE, AVAILABLE_TYPE, getOrdersById,
-  actions as orderActions, types as orderTypes } from './entities/orders'
+  actions as orderActions, types as orderTypes, getAllOrders } from './entities/orders'
 import {
   actions as commentActions
 } from './entities/comments'
 import { combineReducers } from "redux"
+import { createSelector } from "reselect";
 
 const typeToKey = {
   [TO_PAY_TYPE]: 'toPayIds',
@@ -297,12 +298,22 @@ export const getCurrentTab = state =>
   state.user.currentTab
 
 // 获取订单列表
-export const getOrders = state => {
-  const key = ['ids', 'toPayIds', 'availableIds', 'refundIds'][state.user.currentTab]
-  return state.user.orders[key].map(id => {
-    return getOrdersById(state, id)
-  })
-}
+// export const getOrders = state => {
+//   const key = ['ids', 'toPayIds', 'availableIds', 'refundIds'][state.user.currentTab]
+//   return state.user.orders[key].map(id => {
+//     return getOrdersById(state, id)
+//   })
+// }
+const getUserOrders = state => state.user.orders
+
+export const getOrders = createSelector(
+  [getCurrentTab, getUserOrders, getAllOrders ], (currentTab, userOrders, orders) => {
+    const key = ['ids', 'toPayIds', 'availableIds', 'refundIds'][currentTab]
+    return userOrders[key].map(id => {
+      return orders[id]
+    })
+  }
+)
 
 // 需要删除的订单ID
 export const getDeletingOrderId = state => {
