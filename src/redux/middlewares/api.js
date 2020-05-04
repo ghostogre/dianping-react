@@ -40,7 +40,7 @@ export default store => next => action => {
       type: successType,
       response
     })),
-    error => (actionWith({
+    error => next(actionWith({
       type: failureType,
       error: error.message || '获取数据失败'
     }))

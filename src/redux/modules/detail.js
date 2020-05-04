@@ -5,6 +5,7 @@ import { schema as shopSchema, getShopById, getAllShop } from './entities/shops'
 import { combineReducers } from 'redux'
 import createReducer from '../../utils/createReducer';
 import { createSelector } from 'reselect';
+
 const intitalState = {
   product: {
     isFetching: false,
@@ -95,6 +96,7 @@ const product = (state = intitalState.product, action) => {
         isFetching: true
       }
     case types.FETCH_PRODUCT_DETAIL_SUCCESS:
+      // 这里的 action.id 用于缓存的情况
       return {
         ...state,
         isFetching: false,
